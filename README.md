@@ -1,4 +1,7 @@
 # markdownBlog_finalProject
+# NOTE
+  - rafce: tạo ra một thành phần chức năng React, import React và export component
+  - npm run dev -> start
 
 ## frontend
   # init project frontend - create frontend folder
@@ -12,3 +15,22 @@
 
   - config tailwindcss.config.js
   - config index.css
+
+  - install extension: ES7 React/Redux/GraphQL/React-Native snippets
+
+  # create new app
+  - App.jsx: rafce -> create a new one
+  - npm run dev -> start
+
+  - NavBar design: (init with rafce)
+    - new folder pages + components
+    - pages:
+      - new homepage: Home.jsx
+    - components:
+      -new component:
+        Navbar.jsx
+        HomePosts.jsx
+        Footer.jsx
+    
+    - add navbar, routes, footer to Home page
+    - design Navbar
