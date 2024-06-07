@@ -60,3 +60,13 @@
     - while config deleteCategory button, using arrow function to add a callback function for OnClick event
 
   - create profile page
+
+
+## backend
+  - npm init -y
+  - npm i express mongoose dotenv cors bcrypt jsonwebtoken cookie-parser multer
+
+  - turn off restrict mode for nodemon
+    - open the Windows PowerShell in Administration Mode
+    - Get-ExecutionPolicy to check
+    - if Restricted -> Set-ExecutionPolicy Unrestrict -> Y
