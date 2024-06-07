@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 // save confidential data with dotenv
 const dotenv = require("dotenv");
 
+const authRoute = require("./routes/auth");
+
 // database
 const connectDB = async () => {
   try {
@@ -15,6 +17,8 @@ const connectDB = async () => {
 };
 
 dotenv.config();
+app.use(express.json());
+app.use("/api/auth", authRoute);
 
 app.listen(process.env.PORT, () => {
   //call
