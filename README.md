@@ -70,3 +70,6 @@
     - open the Windows PowerShell in Administration Mode
     - Get-ExecutionPolicy to check
     - if Restricted -> Set-ExecutionPolicy Unrestrict -> Y
+
+  - run server
+    - nodemon index.js
