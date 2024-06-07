@@ -1,7 +1,14 @@
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+
 const Profile = () => {
   return (
-    <div>Profile</div>
-  )
-}
+    <div>
+      <Navbar />
+      
+      <Footer />
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;
