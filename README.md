@@ -4,6 +4,7 @@
 
 - rafce: tạo ra một thành phần chức năng React, import React và export component
 - npm run dev -> start
+- config screen width: use min-width (tailwind.config.js)
 
 ## frontend
 
@@ -57,3 +58,5 @@
   - create 'create post page'
     - attention while using adding new category: add a constraint that adding only if it has text
     - while config deleteCategory button, using arrow function to add a callback function for OnClick event
+
+  - create profile page
