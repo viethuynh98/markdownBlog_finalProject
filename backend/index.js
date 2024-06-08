@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
+const commentRoute = require("./routes/comments");
 
 // database
 const connectDB = async () => {
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/comments", commentRoute);
 
 app.listen(process.env.PORT, () => {
   //call
