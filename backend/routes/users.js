@@ -23,6 +23,7 @@ router.put("/:id",verifyToken,async (req,res)=>{
     }
 })
 
+
 //DELETE
 router.delete("/:id",verifyToken,async (req,res)=>{
     try{
@@ -36,4 +37,19 @@ router.delete("/:id",verifyToken,async (req,res)=>{
         res.status(500).json(err)
     }
 })
+
+
+//GET USER
+router.get("/:id",async (req,res)=>{
+    try{
+        const user=await User.findById(req.params.id)
+        const {password,...info}=user._doc
+        res.status(200).json(info)
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+})
+
+
 module.exports=router
