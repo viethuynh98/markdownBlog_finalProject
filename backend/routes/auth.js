@@ -21,16 +21,19 @@ router.post("/register", async (req, res) => {
 // LOG IN
 router.post("/login", async (req, res) => {
   try {
+    // lay user info tu request
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
       return res.status(404).json("User not found!");
     }
+    // compare password
     const match = await bcrypt.compare(req.body.password, user.password);
 
     if (!match) {
       return res.status(401).json("Wrong credentials!");
     }
+    // tao token
     const token = jwt.sign({ _id: user._id }, process.env.SECRET, {
       expiresIn: "3d",
     });
@@ -45,6 +48,7 @@ router.post("/login", async (req, res) => {
 // LOGOUT
 router.post("/logout", async (req, res) => {
   try {
+    // clear cookie when log out
     res
       .clearCookie("token", { sameSite: "none", secure: true })
       .status(200)
