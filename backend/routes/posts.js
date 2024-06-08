@@ -9,9 +9,9 @@ const Comment = require("../models/Comment");
 // CREATE
 router.post("/create", async (req, res) => {
   try {
-    const newPost = new Post(res.body);
+    const newPost = new Post(req.body);
     const savedPost = await newPost.save();
-    res.status(200).json(savesPost);
+    res.status(200).json(savedPost);
   } catch (err) {
     res.status(200).json(err);
   }
