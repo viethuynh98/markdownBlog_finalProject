@@ -16,6 +16,7 @@ router.post("/create", async (req, res) => {
     res.status(200).json(err);
   }
 });
+
 // UPDATE
 router.put("/:id", async (req, res) => {
   try {
@@ -29,6 +30,7 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // DELETE
 router.delete("/:id", async (req, res) => {
   try {
@@ -38,3 +40,15 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// GET POST COMMENTS
+router.get("/post/:postId", async (req, res) => {
+  try {
+    const comments = await Comment.find({ userId: req.params.postId });
+    res.status(200).json(comments);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
