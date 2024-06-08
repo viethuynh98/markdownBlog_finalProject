@@ -48,3 +48,12 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+// GET POSTS
+router.get("/:id", async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
