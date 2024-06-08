@@ -31,18 +31,27 @@ router.post("/login", async (req, res) => {
     if (!match) {
       return res.status(401).json("Wrong credentials!");
     }
-    const token = jwt.sign(
-      { _id: user._id, username: user.username, email: user.email },
-      process.env.SECRET,
-      { expiresIn: "3d" }
-    );
+    const token = jwt.sign({ _id: user._id }, process.env.SECRET, {
+      expiresIn: "3d",
+    });
     const { password, ...info } = user._doc;
     res.cookie("token", token).status(200).json(info);
-    res.status(200).json(user);
+    // res.status(200).json(user);
   } catch (err) {
     res.status(200).json(err);
   }
 });
 
+// LOGOUT
+router.post("/logout", async (req, res) => {
+  try {
+    res
+      .clearCookie("token", { sameSite: "none", secure: true })
+      .status(200)
+      .send("User logged out successfully!");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
