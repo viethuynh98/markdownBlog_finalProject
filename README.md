@@ -5,6 +5,7 @@
 - rafce: tạo ra một thành phần chức năng React, import React và export component
 - npm run dev -> start
 - config screen width: use min-width (tailwind.config.js)
+- add extension thunder client to using POSTMAN inside vscode
 
 ## frontend
 
@@ -56,20 +57,52 @@
   - create post detail page (page to read article)
 
   - create 'create post page'
+
     - attention while using adding new category: add a constraint that adding only if it has text
     - while config deleteCategory button, using arrow function to add a callback function for OnClick event
 
   - create profile page
 
-
 ## backend
-  - npm init -y
-  - npm i express mongoose dotenv cors bcrypt jsonwebtoken cookie-parser multer
 
-  - turn off restrict mode for nodemon
-    - open the Windows PowerShell in Administration Mode
-    - Get-ExecutionPolicy to check
-    - if Restricted -> Set-ExecutionPolicy Unrestrict -> Y
+- npm init -y
+- npm i express mongoose dotenv cors bcrypt jsonwebtoken cookie-parser multer
 
-  - run server
-    - nodemon index.js
+- turn off restrict mode for nodemon
+
+  - open the Windows PowerShell in Administration Mode
+  - Get-ExecutionPolicy to check
+  - if Restricted -> Set-ExecutionPolicy Unrestrict -> Y
+
+- run server
+
+  - nodemon index.js
+
+- config index.js
+
+  - express, mongoose
+  - create PORT to run server
+  - connect DB
+  - add authentication route
+
+- config authentication
+
+  - register -> receive request -> encrypt password -> newUser.save()
+  - log in -> receive request -> findOne() -> compare password -> pass ? tao token : status(401)
+  - log out -> clear cookie by token
+
+- user route
+
+  - add user route to index.js
+  - add update route
+  - add delete route
+  - add get route
+
+- post route
+  - add post route to index.js
+  - add create route
+  - add update route
+  - add delete route
+  - add get post detail route (post detail)
+  - add get all post route (homepage)
+  - add get user post route (profile)

@@ -16,6 +16,7 @@ router.post("/create", async (req, res) => {
     res.status(200).json(err);
   }
 });
+
 // UPDATE
 router.put("/:id", async (req, res) => {
   try {
@@ -29,6 +30,7 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // DELETE
 router.delete("/:id", async (req, res) => {
   try {
@@ -48,6 +50,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // GET POSTS
 router.get("/:id", async (req, res) => {
   try {
@@ -57,6 +60,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // GET USER POSTS
 router.get("/:userId", async (req, res) => {
   try {
@@ -66,3 +70,5 @@ router.get("/:userId", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;
