@@ -4,10 +4,11 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
+const verifyToken = require("../verifyToken");
 // const verifyToken = require("../verifyToken");
 
 //UPDATE
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   try {
     if (req.body.password) {
       // decode password to compare
@@ -28,7 +29,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
     // delete user
     await User.findByIdAndDelete(req.params.id);
@@ -43,7 +44,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 //GET USER
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     // hide password
