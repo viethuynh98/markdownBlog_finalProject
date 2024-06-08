@@ -35,7 +35,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     await Post.findByIdAndDelete(req.params.id);
-    res.status(200).json("User has been deleted!");
+    res.status(200).json("Post has been deleted!");
   } catch (err) {
     res.status(500).json(err);
   }
@@ -52,7 +52,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // GET POSTS
-router.get("/:id", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const posts = await Post.find();
     res.status(200).json(posts);
@@ -62,7 +62,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // GET USER POSTS
-router.get("/:userId", async (req, res) => {
+router.get("/user/:userId", async (req, res) => {
   try {
     const posts = await Post.find({ userId: req.params.userId });
     res.status(200).json(posts);
