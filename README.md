@@ -6,10 +6,11 @@
 - npm run dev -> start
 - config screen width: use min-width (tailwind.config.js)
 - add extension thunder client to using POSTMAN inside vscode
+- axios???
 
-## frontend
+# frontend
 
-# init project frontend - create frontend folder
+## init project frontend - create frontend folder
 
 - cd frontend
 - npm create vite@latest
@@ -24,7 +25,7 @@
 
 - install extension: ES7 React/Redux/GraphQL/React-Native snippets
 
-# create new app
+## create new app
 
 - App.jsx: rafce -> create a new one
 - npm run dev -> start
@@ -63,7 +64,7 @@
 
   - create profile page
 
-## backend
+# backend
 
 - npm init -y
 - npm i express mongoose dotenv cors bcrypt jsonwebtoken cookie-parser multer
@@ -99,6 +100,7 @@
   - add get route
 
 - post route
+
   - add post route to index.js
   - add create route
   - add update route
@@ -106,3 +108,28 @@
   - add get post detail route (post detail)
   - add get all post route (homepage)
   - add get user post route (profile)
+
+- comment route
+
+  - create
+  - delete
+  - update
+  - get post's comment
+
+- verify token
+  - init verify token
+  - add to routes
+
+# Connect FE and BE
+
+- add url
+- add logic to handle register
+- add logic to handle log in
+
+## init user context
+
+- use user data everywhere in web
+  - (get user data to manipulate navbar)
+  - userContext get refetch data: only get userId
+    - because while log in, we only pass user.\_id to token
+    - we can config it to pass more info if needed (like username or email) (auth.js on log in)
