@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from "react-router-dom";
 import Comment from "../components/Comment";
 import Footer from "../components/Footer";
@@ -85,7 +86,7 @@ const PostDetails = () => {
             <Comment />
             <Comment />
           </div>
-          {/* write a commnent */}
+          {/* write a comment */}
           <div className="flex flex-col mt-4 md:flex-row">
             <input
               type="text"

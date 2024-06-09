@@ -18,7 +18,7 @@ const Home = () => {
   const [loader, setLoader] = useState(false);
 
   const { user } = useContext(UserContext);
-  console.log(user);
+  // console.log(user);
   // lay du lieu tu server
   const fetchPosts = async () => {
     // (2)

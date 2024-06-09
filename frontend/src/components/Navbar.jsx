@@ -11,9 +11,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const path = useLocation().pathname;
-  console.log(path);
+  // console.log(path);
 
-  console.log(prompt);
+  // console.log(prompt);
 
   const ShowMenu = () => {
     setMenu(!menu);
