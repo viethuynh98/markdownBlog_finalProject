@@ -1,11 +1,76 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { ImCross } from "react-icons/im";
+import axios from "axios";
+import { URL } from "../url";
+import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const EditPost = () => {
+  const postId = useParams().id;
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [file, setFile] = useState(null);
+  const { user } = useContext(UserContext);
   const [cat, setCat] = useState("");
   const [cats, setCats] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchPost = async () => {
+    try {
+      const res = await axios.get(URL + "/api/posts/" + postId);
+      setTitle(res.data.title);
+      setDesc(res.data.desc);
+      setFile(res.data.photo);
+      setCats(res.data.categories);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const post = {
+      title,
+      desc,
+      username: user.username,
+      userId: user._id,
+      categories: cats,
+    };
+
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("img", filename);
+      data.append("file", file);
+      post.photo = filename;
+
+      // image upload
+      try {
+        // eslint-disable-next-line no-unused-vars
+        const imgUpload = await axios.post(URL + "/api/upload", data);
+        // console.log(imgUpload.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    // post upload
+    try {
+      const res = await axios.put(URL + "/api/posts/" + postId, post, {
+        withCredentials: true,
+      });
+      navigate("/posts/post/" + res.data._id);
+      // console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPost();
+  }, [postId]);
 
   const addCategory = () => {
     if (cat.trim() === "") return; // Không thêm nếu input trống
@@ -28,11 +93,17 @@ const EditPost = () => {
         <h1 className="font-bold md:text-2xl text-xl">Update a post</h1>
         <form className="w-full flex flex-col space-y-4 md:space-y-8 mt-4">
           <input
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
             type="text"
             placeholder="Enter post title"
             className="px-4 py-2 outline-1"
           />
-          <input type="file" className="px-4" />
+          <input
+            onChange={(e) => setFile(e.target.files[0])}
+            type="file"
+            className="px-4"
+          />
 
           {/* category */}
           <div className="flex flex-col">
@@ -76,6 +147,8 @@ const EditPost = () => {
           </div>
 
           <textarea
+            onChange={(e) => setDesc(e.target.value)}
+            value={desc}
             name=""
             id=""
             rows={15}
@@ -83,7 +156,10 @@ const EditPost = () => {
             placeholder="Enter post description"
             className="px-4 py-2 outline-none"
           />
-          <button className="bg-black w-4/12 md:w-1/5 mx-auto text-white font-semibold px-4 py-2 md:text-xl text-lg">
+          <button
+            onClick={handleUpdate}
+            className="bg-black w-4/12 md:w-1/5 mx-auto text-white font-semibold px-4 py-2 md:text-xl text-lg"
+          >
             Update
           </button>
         </form>
