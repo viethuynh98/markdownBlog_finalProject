@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { FaBars } from "react-icons/fa6";
 import { useContext, useState } from "react";
@@ -9,6 +9,9 @@ const Navbar = () => {
   const [prompt, setPrompt] = useState("");
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
+
+  const path = useLocation().pathname;
+  console.log(path);
 
   console.log(prompt);
 
@@ -33,21 +36,23 @@ const Navbar = () => {
       </h1>
 
       {/* div for search */}
-      <div className="flex justify-center items-center space-x-0">
-        <p
-          onClick={() => navigate(prompt ? `?search=${prompt}` : "/")}
-          className="cursor-pointer"
-        >
-          <BsSearch />
-        </p>
-        <input
-          onChange={(e) => setPrompt(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="outline-none px-3"
-          placeholder="Search a post"
-          type="text"
-        />
-      </div>
+      {path === "/" && (
+        <div className="flex justify-center items-center space-x-0">
+          <p
+            onClick={() => navigate(prompt ? `?search=${prompt}` : "/")}
+            className="cursor-pointer"
+          >
+            <BsSearch />
+          </p>
+          <input
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="outline-none px-3"
+            placeholder="Search a post"
+            type="text"
+          />
+        </div>
+      )}
 
       {/* div for login and register */}
       <div className="hidden md:flex items-center justify-center space-x-2 md:space-x-4">
