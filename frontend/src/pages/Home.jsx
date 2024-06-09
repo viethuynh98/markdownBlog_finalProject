@@ -3,9 +3,10 @@ import Footer from "../components/Footer";
 import HomePosts from "../components/HomePosts";
 import Navbar from "../components/Navbar";
 import { URL } from "../url";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
+import { UserContext } from "../context/UserContext";
 
 const Home = () => {
   const { search } = useLocation();
@@ -16,6 +17,8 @@ const Home = () => {
   // (2) add loader animation on loading posts
   const [loader, setLoader] = useState(false);
 
+  const { user } = useContext(UserContext);
+  console.log(user);
   // lay du lieu tu server
   const fetchPosts = async () => {
     // (2)
@@ -56,7 +59,13 @@ const Home = () => {
             <Loader />
           </div>
         ) : !noResults ? ( // (1)
-          posts.map((post) => <HomePosts key={post._id} post={post} />)
+          posts.map((post) => (
+            <>
+              <Link to={user ? `/posts/post/${post._id}` : `/login`}>
+                <HomePosts key={post._id} post={post} />
+              </Link>
+            </>
+          ))
         ) : (
           <h3 className="text-center font-bold mt-16"> NO POSTS AVAILABLE</h3>
         )}
