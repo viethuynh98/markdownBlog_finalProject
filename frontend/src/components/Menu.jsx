@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import { URL } from "../url";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   const { user } = useContext(UserContext);
@@ -23,12 +24,12 @@ const Menu = () => {
     <div className="bg-black w-[150px] flex flex-col items-start absolute top-10 md:top-11 right-6 md:right-16 rounded-md p-3 space-y-4">
       {!user && (
         <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
-          Login
+          <Link to="/login">Login</Link>
         </h3>
       )}
       {!user && (
         <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
-          Register
+          <Link to="/register">Register</Link>
         </h3>
       )}
       {user && (
@@ -38,7 +39,7 @@ const Menu = () => {
       )}
       {user && (
         <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
-          Write
+          <Link to="/write">Write</Link>
         </h3>
       )}
       {user && (

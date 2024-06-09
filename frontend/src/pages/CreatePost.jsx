@@ -15,7 +15,7 @@ const CreatePost = () => {
   const [cat, setCat] = useState("");
   const [cats, setCats] = useState([]);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const addCategory = () => {
     if (cat.trim() === "") return; // Không thêm nếu input trống
@@ -50,6 +50,7 @@ const CreatePost = () => {
 
       // image upload
       try {
+        // eslint-disable-next-line no-unused-vars
         const imgUpload = await axios.post(URL + "/api/upload", data);
         // console.log(imgUpload.data);
       } catch (err) {

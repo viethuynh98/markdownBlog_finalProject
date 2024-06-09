@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Comment from "../components/Comment";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -18,6 +18,7 @@ const PostDetails = () => {
   const { user } = useContext(UserContext);
   // console.log(user);
   const [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
 
   const fetchPost = async () => {
     setLoader(true);
@@ -29,6 +30,16 @@ const PostDetails = () => {
     } catch (err) {
       console.log(err);
       setLoader(true);
+    }
+  };
+
+  const handleDeletePost = async () => {
+    try {
+      const res = await axios.delete(URL + "/api/posts/" + postId, {withCredentials: true}); // handle 401: Unauthorized
+      console.log(res.data);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -54,7 +65,7 @@ const PostDetails = () => {
                 <p>
                   <BiEdit />
                 </p>
-                <p>
+                <p onClick={handleDeletePost} className="cursor-pointer">
                   <MdDelete />
                 </p>
               </div>
