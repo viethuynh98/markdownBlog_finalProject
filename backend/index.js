@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 // save confidential data with dotenv
 const dotenv = require("dotenv");
 const cors = require("cors");
-
+//image upload
+const multer = require("multer");
 const cookieParser = require("cookie-parser");
 
 const authRoute = require("./routes/auth");
@@ -31,6 +32,13 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentRoute);
+
+// image upload
+const storaage = multer.diskStorage({
+  destination: (req, file, fn) => {
+    fn(null, "images");
+  },
+});
 
 app.listen(process.env.PORT, () => {
   //call
