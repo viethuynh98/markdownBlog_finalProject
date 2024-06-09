@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
 });
 
 // LOGOUT
-router.post("/logout", async (req, res) => {
+router.get("/logout", async (req, res) => {
   try {
     // clear cookie when log out
     res
