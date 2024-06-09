@@ -31,7 +31,10 @@ const Menu = () => {
         </h3>
       )}
       {user && (
-        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
+        <h3
+          onClick={handleLogout}
+          className="text-white text-sm hover:text-gray-500 cursor-pointer"
+        >
           Logout
         </h3>
       )}
