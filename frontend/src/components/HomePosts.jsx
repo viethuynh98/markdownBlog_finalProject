@@ -19,11 +19,13 @@ const HomePosts = ({ post }) => {
         <div className="flex mb-2 text-sm font-semibold text-gray-500 items-center justify-between md:mb-4">
           <p>@{post.username}</p>
           <div className="flex space-x-2">
-            <p>16/06/2023</p>
-            <p>16:45</p>
+            <p>{new Date(post.updatedAt).toString().slice(0, 15)}</p>
+            <p>{new Date(post.updatedAt).toString().slice(16, 24)}</p>
           </div>
         </div>
-        <p className="text-sm md:text-lg">{post.desc.slice(0, 200) + "... Read more"} </p>
+        <p className="text-sm md:text-lg">
+          {post.desc.slice(0, 200) + "... Read more"}{" "}
+        </p>
       </div>
     </div>
   );
