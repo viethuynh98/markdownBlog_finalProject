@@ -29,11 +29,9 @@ const Home = () => {
     <>
       <Navbar />
       <div className="px-8 md:px-[200px]">
-        <HomePosts />
-        <HomePosts />
-        <HomePosts />
-        <HomePosts />
-        <HomePosts />
+        {posts.map((post) => (
+          <HomePosts key={post._id} post={post} />
+        ))}
       </div>
       <Footer />
     </>
