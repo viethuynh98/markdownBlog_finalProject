@@ -133,3 +133,13 @@
   - userContext get refetch data: only get userId
     - because while log in, we only pass user.\_id to token
     - we can config it to pass more info if needed (like username or email) (auth.js on log in)
+
+## get home post and implementation searching functionality
+
+- get home posts with GET POST route
+- using array map function to generate POSTS
+- add searching function
+  - check user input prompt
+  - send searched result to server
+  - add additional condition to check result
+  - add loader animation
