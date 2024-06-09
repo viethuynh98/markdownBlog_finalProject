@@ -11,6 +11,8 @@ const Home = () => {
   // console.log(search);
   const [posts, setPosts] = useState([]);
   // check if no posts match the search filter then "nothing"
+  const [noResults, setNoResults] = useState(false);
+
 
   // lay du lieu tu server
   const fetchPosts = async () => {
@@ -39,10 +41,12 @@ const Home = () => {
     // md for medium screen
     <>
       <Navbar />
-      <div className="px-8 md:px-[200px]">
-        {posts.map((post) => (
-          <HomePosts key={post._id} post={post} />
-        ))}
+      <div className="px-8 md:px-[200px] min-h-[80vh]">
+        {!noResults ? (
+          posts.map((post) => <HomePosts key={post._id} post={post} />)
+        ) : (
+          <h3 className="text-center font-bold mt-16"> NO POSTS AVAILABLE</h3>
+        )}
       </div>
       <Footer />
     </>
