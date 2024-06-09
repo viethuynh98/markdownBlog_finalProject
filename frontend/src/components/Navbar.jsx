@@ -16,7 +16,13 @@ const Navbar = () => {
     setMenu(!menu);
   };
 
-  const {user} = useContext(UserContext);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      navigate(prompt ? `?search=${prompt}` : "/");
+    }
+  };
+
+  const { user } = useContext(UserContext);
   // console.log(user);
   return (
     // div for all
@@ -35,6 +41,8 @@ const Navbar = () => {
           <BsSearch />
         </p>
         <input
+          onChange={(e) => setPrompt(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="outline-none px-3"
           placeholder="Search a post"
           type="text"
