@@ -35,7 +35,9 @@ const PostDetails = () => {
 
   const handleDeletePost = async () => {
     try {
-      const res = await axios.delete(URL + "/api/posts/" + postId, {withCredentials: true}); // handle 401: Unauthorized
+      const res = await axios.delete(URL + "/api/posts/" + postId, {
+        withCredentials: true,
+      }); // handle 401: Unauthorized
       console.log(res.data);
       navigate("/");
     } catch (err) {
@@ -62,7 +64,10 @@ const PostDetails = () => {
             </h1>
             {user?._id === post?.userId && (
               <div className="flex items-center justify-center space-x-2">
-                <p>
+                <p
+                  className="cursor-pointer"
+                  onClick={() => navigate("/edit/" + postId)}
+                >
                   <BiEdit />
                 </p>
                 <p onClick={handleDeletePost} className="cursor-pointer">
