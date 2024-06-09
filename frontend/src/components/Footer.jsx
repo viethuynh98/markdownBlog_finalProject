@@ -20,7 +20,7 @@ const Footer = () => {
           <p>Terms of Services</p>
         </div>
       </div>
-      <p className="py-2 pb-2 text-center text-white bg-black">
+      <p className="py-2 pb-4 text-center text-white bg-black text-sm">
         All right reserved @Blog Market 2024
       </p>
     </>
