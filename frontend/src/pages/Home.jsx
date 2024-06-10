@@ -3,10 +3,9 @@ import Footer from "../components/Footer";
 import HomePosts from "../components/HomePosts";
 import Navbar from "../components/Navbar";
 import { URL } from "../url";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
-import { UserContext } from "../context/UserContext";
 
 const Home = () => {
   const { search } = useLocation();
@@ -16,9 +15,8 @@ const Home = () => {
   const [noResults, setNoResults] = useState(false);
   // (2) add loader animation on loading posts
   const [loader, setLoader] = useState(false);
+  const [categories, setCategories] = useState([]);
 
-  const { user } = useContext(UserContext);
-  // console.log(user);
   // lay du lieu tu server
   const fetchPosts = async () => {
     // (2)
@@ -26,7 +24,6 @@ const Home = () => {
     try {
       // GET POSTS route to check search filter
       const res = await axios.get(URL + "/api/posts" + search);
-      // console.log(res.data);
       setPosts(res.data);
 
       // (1)
@@ -35,7 +32,10 @@ const Home = () => {
       } else {
         setNoResults(false);
       }
-
+      const allCategories = res.data.flatMap((post) => post.categories);
+      const uniqueCategories = [...new Set(allCategories)];
+      setCategories(uniqueCategories);
+      console.log(allCategories);
       // (2)
       setLoader(false);
     } catch (err) {
@@ -61,7 +61,7 @@ const Home = () => {
         ) : !noResults ? ( // (1)
           posts.map((post) => (
             <>
-              <Link to={user ? `/posts/post/${post._id}` : `/login`}>
+              <Link to={`/posts/post/${post._id}`}>
                 <HomePosts key={post._id} post={post} />
               </Link>
             </>
