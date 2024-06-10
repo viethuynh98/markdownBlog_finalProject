@@ -109,12 +109,24 @@ const Profile = () => {
           <p>{profile?.summary}</p>
         </div>
         {/* Skills */}
-        <div className="w-full p-4 border shadow-md">
-          <h1 className="text-xl font-bold mb-4">SKILLS</h1>
-          {profile?.skills?.map((skill, index) => (
-            <p key={index}>{skill}</p>
-          ))}
+        <div className="w-full p-4 border shadow-md bg-gradient-to-tr">
+          <h1 className="text-xl font-bold mb-4 text-center">SKILLS</h1>
+          <div className="flex flex-row justify-center flex-wrap">
+            {profile?.skills?.map((skill, index) => (
+              <p
+                key={index}
+                className="inline-block border p-2 shadow-md my-2 text-center mx-1 rounded-md animate-bounce"
+                style={{
+                  backgroundColor: getRandomBrightColor(),
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                {skill}
+              </p>
+            ))}
+          </div>
         </div>
+
         {/* Education */}
         <div className="w-full p-4 border shadow-md">
           <h1 className="text-xl font-bold mb-4">EDUCATION</h1>
