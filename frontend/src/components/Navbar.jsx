@@ -29,7 +29,7 @@ const Navbar = () => {
   // console.log(user);
   return (
     // div for all
-    <div className="flex items-center justify-between px-6 md:px-[200px] py-4">
+    <div className="flex items-center justify-between px-6 md:px-[200px] py-4 ">
       <h1 className="text-lg md:text-xl font-extrabold">
         {/* link to the homepage */}
         <Link to="/">VTB BLOG</Link>
@@ -37,17 +37,17 @@ const Navbar = () => {
 
       {/* div for search */}
       {path === "/" && (
-        <div className="flex justify-center items-center space-x-0">
+        <div className="flex justify-center items-center space-x-0 ">
           <p
             onClick={() => navigate(prompt ? `?search=${prompt}` : "/")}
-            className="cursor-pointer"
+            className="cursor-pointer border-2 rounded-2xl p-2 mr-1"
           >
             <BsSearch />
           </p>
           <input
             onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="outline-none px-3"
+            className="outline-none px-2 border-2 border-gray-300 rounded-lg p-1"
             placeholder="Search a post"
             type="text"
           />
