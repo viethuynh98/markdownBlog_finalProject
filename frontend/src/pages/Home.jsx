@@ -44,6 +44,25 @@ const Home = () => {
     }
   };
 
+  const handleSearchByCategory = async (category) => {
+    setLoader(true);
+    try {
+      const res = await axios.get(URL + "/api/posts/search/" + category);
+      setPosts(res.data);
+      console.log(res.data);
+
+      if (res.data.length === 0) {
+        setNoResults(true);
+      } else {
+        setNoResults(false);
+      }
+      setLoader(false);
+    } catch (err) {
+      console.log(err);
+      setLoader(false);
+    }
+  };
+
   // call
   useEffect(() => {
     fetchPosts();
