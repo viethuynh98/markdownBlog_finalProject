@@ -26,7 +26,10 @@ const HomePosts = ({ post }) => {
           </div>
         </div>
         <p className="text-sm md:text-lg">
-          {post.desc.slice(0, 200) + "... Read more"}{" "}
+          {post.desc.slice(0, 200) + "..."}{" "}
+          <span className="text-red-500 hover:text-red-700 cursor-pointer">
+            Read more
+          </span>
         </p>
       </div>
     </div>
