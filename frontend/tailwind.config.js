@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        'md': '1050px', // Thay đổi breakpoint 'md' thành 900px
+        'md': '900px', // Thay đổi breakpoint 'md' thành 900px
         'lg': '1024px',
         'xl': '1280px',
         '2xl': '1536px',

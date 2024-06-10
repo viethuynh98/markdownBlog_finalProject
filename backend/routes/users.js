@@ -37,7 +37,7 @@ router.delete("/:id", verifyToken, async (req, res) => {
     await Post.deleteMany({ userId: req.params.id });
     // delete all user's comment
     await Comment.deleteMany({ userId: req.params.id });
-    res.status(200).json("User has been deleted!");
+    res.clearCookie("token", { sameSite: "none", secure: true }).status(200).json("User has been deleted!");
   } catch (err) {
     res.status(500).json(err);
   }
