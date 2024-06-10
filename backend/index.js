@@ -13,6 +13,7 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const commentRoute = require("./routes/comments");
+const userProfileRoute = require("./routes/userProfiles");
 
 // database
 const connectDB = async () => {
@@ -32,6 +33,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(cookieParser());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api/userProfile", userProfileRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentRoute);
 
