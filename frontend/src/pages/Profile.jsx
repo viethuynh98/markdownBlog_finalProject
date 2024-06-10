@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ProfilePosts from "../components/ProfilePosts";
 import axios from "axios";
-import { URL } from "../url";
+import { IF, URL } from "../url";
 import { UserContext } from "../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -103,19 +103,26 @@ const Profile = () => {
     <div>
       <Navbar />
       <div className="min-h-[80vh] px-8 md:px-[200px] mt-8 flex flex-col items-start space-y-8">
-        {/* Summary */}
-        <div className="w-full p-4 border shadow-md">
-          <h1 className="text-xl font-bold mb-4">SUMMARY</h1>
-          <p>{profile?.summary}</p>
+        {/* Summary and Profile Photo */}
+        <div className="flex w-full">
+          {/* Summary */}
+          <div className="w-3/4 p-4 min-h-[300px]">
+            <h1 className="ext-xl font-bold mb-4 text-center">ABOUT</h1>
+            <p>{profile?.summary}</p>
+          </div>
+          {/* Profile Photo */}
+          <div className="w-1/4">
+            <img src={IF + "image1"} alt="Profile" className="w-full h-auto" />
+          </div>
         </div>
         {/* Skills */}
-        <div className="w-full p-4 border shadow-md bg-gradient-to-tr">
+        <div className="w-full p-4 bg-gradient-to-tr min-h-[300px]">
           <h1 className="text-xl font-bold mb-4 text-center">SKILLS</h1>
-          <div className="flex flex-row justify-center flex-wrap">
+          <div className="grid grid-cols-4 gap-4">
             {profile?.skills?.map((skill, index) => (
               <p
                 key={index}
-                className="inline-block border p-2 shadow-md my-2 text-center mx-1 rounded-md animate-bounce"
+                className="border p-2 shadow-md text-center rounded-md animate-bounce"
                 style={{
                   backgroundColor: getRandomBrightColor(),
                   animationDelay: `${index * 100}ms`,
@@ -128,24 +135,54 @@ const Profile = () => {
         </div>
 
         {/* Education */}
-        <div className="w-full p-4 border shadow-md">
-          <h1 className="text-xl font-bold mb-4">EDUCATION</h1>
-          {profile?.educations?.map((education, index) => (
-            <p key={index}>{education}</p>
-          ))}
+        <div className="w-full p-4 bg-gradient-to-tr min-h-[300px]">
+          <h1 className="text-xl font-bold mb-4 text-center">EDUCATION</h1>
+          <div className="grid grid-cols-4 gap-4 ">
+            {profile?.educations?.map((education, index) => (
+              <p
+                key={index}
+                className="border p-2 shadow-md text-center rounded-md animate-bounce"
+                style={{
+                  backgroundColor: getRandomBrightColor(),
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                {education}
+              </p>
+            ))}
+          </div>
         </div>
         {/* Interests */}
-        <div className="w-full p-4 border shadow-md">
-          <h1 className="text-xl font-bold mb-4">INTERESTS</h1>
-          {profile?.interests?.map((interest, index) => (
-            <p key={index}>{interest}</p>
-          ))}
+        <div className="w-full p-4 bg-gradient-to-tr min-h-[300px]">
+          <h1 className="text-xl font-bold mb-4 text-center">INTERESTS</h1>
+          <div className="grid grid-cols-4 gap-4 ">
+            {profile?.interests?.map((interest, index) => (
+              <p
+                key={index}
+                className="border p-2 shadow-md text-center rounded-md animate-bounce"
+                style={{
+                  backgroundColor: getRandomBrightColor(),
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                {interest}
+              </p>
+            ))}
+          </div>
         </div>
         {/* Posts */}
-        <div className="w-full p-4 border shadow-md">
-          <h1 className="text-xl font-bold mb-4">POSTS</h1>
+        <div className="w-full p-4">
+          <h1 className="text-xl font-bold mb-4 text-center">POSTS</h1>
           {posts?.map((p) => (
-            <ProfilePosts key={p._id} p={p} />
+            <div
+              className="rounded-md"
+              key={p._id}
+              style={{
+                backgroundColor: getRandomBrightColor(),
+              }}
+            >
+              <ProfilePosts p={p} />
+            </div>
           ))}
         </div>
       </div>

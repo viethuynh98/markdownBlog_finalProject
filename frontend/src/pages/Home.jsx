@@ -8,6 +8,15 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
 
+const getRandomBrightColor = () => {
+  const letters = "89ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 8)];
+  }
+  return color;
+};
+
 const Home = () => {
   const { search } = useLocation();
   const [posts, setPosts] = useState([]);
@@ -86,7 +95,7 @@ const Home = () => {
               <h3 className="font-bold">CATEGORIES</h3>
               <button
                 onClick={handleClearFilters}
-                className="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors"
+                className="bg-gray-800 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors"
               >
                 Clear
               </button>
@@ -96,7 +105,11 @@ const Home = () => {
                 <button
                   onClick={() => handleSearchByCategory(category)}
                   key={index}
-                  className="bg-gray-500 text-white px-3 py-1 rounded-md shadow-md hover:bg-gray-300 transition-colors"
+                  className="bg-gray-500 text-black px-3 py-1 rounded-md shadow-md hover:bg-gray-300 transition-colors animate-bounce"
+                  style={{
+                    backgroundColor: getRandomBrightColor(),
+                    animationDelay: `${index * 50}ms`,
+                  }}
                 >
                   {category}
                 </button>
