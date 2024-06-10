@@ -27,8 +27,9 @@ const Home = () => {
       }
       const categories = res.data.flatMap((post) => post.categories);
       const uniqueCategories = [...new Set(categories)];
-      setAllCategories(uniqueCategories);
-      setFilteredCategories(uniqueCategories);
+      const sortedCategories = uniqueCategories.sort();
+      setAllCategories(sortedCategories);
+      setFilteredCategories(sortedCategories);
       setLoader(false);
     } catch (err) {
       console.log(err);
@@ -48,7 +49,8 @@ const Home = () => {
       }
       const allCategories = res.data.flatMap((post) => post.categories);
       const uniqueCategories = [...new Set(allCategories)];
-      setFilteredCategories(uniqueCategories);
+      const sortedCategories = uniqueCategories.sort();
+      setFilteredCategories(sortedCategories);
       setLoader(false);
     } catch (err) {
       console.log(err);
@@ -93,7 +95,7 @@ const Home = () => {
                 <button
                   onClick={() => handleSearchByCategory(category)}
                   key={index}
-                  className="bg-gray-200 text-gray-800 px-3 py-1 rounded-md shadow-md hover:bg-gray-300 transition-colors"
+                  className="bg-gray-500 text-white px-3 py-1 rounded-md shadow-md hover:bg-gray-300 transition-colors"
                 >
                   {category}
                 </button>
