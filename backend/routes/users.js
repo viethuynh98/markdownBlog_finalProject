@@ -11,7 +11,7 @@ const verifyToken = require("../verifyToken");
 router.put("/:id", verifyToken, async (req, res) => {
   try {
     if (req.body.password) {
-      // decode password to compare
+      // encode password 
       const salt = await bcrypt.genSalt(10);
       req.body.password = await bcrypt.hashSync(req.body.password, salt);
     }

@@ -80,7 +80,9 @@ const Register = () => {
           >
             Register
           </button>
-          {error && <h3 className="text-red-500 text-sm">Something went wrong</h3>}
+          {error && (
+            <h3 className="text-red-500 text-sm">Something went wrong</h3>
+          )}
           <div className="flex justify-center items-center space-x-3">
             <p>Already have an account?</p>
             <p className="text-gray-500 hover:text-black">

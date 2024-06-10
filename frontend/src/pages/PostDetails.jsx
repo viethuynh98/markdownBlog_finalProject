@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useNavigate, useParams } from "react-router-dom";
 import Comment from "../components/Comment";
@@ -12,6 +13,7 @@ import { UserContext } from "../context/UserContext";
 import Loader from "../components/Loader";
 
 const PostDetails = () => {
+  //  take post_id
   const postId = useParams().id;
   const [post, setPost] = useState({});
   const { user } = useContext(UserContext);
@@ -132,6 +134,7 @@ const PostDetails = () => {
               ))}
             </div>
           </div>
+          {/* comment section */}
           <div className="flex flex-col mt-4">
             <h3 className="mt-6 mb-4 font-semibold">Comments:</h3>
             {comments?.map((c) => (
