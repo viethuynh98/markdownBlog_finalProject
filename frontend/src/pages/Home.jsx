@@ -35,7 +35,6 @@ const Home = () => {
       const allCategories = res.data.flatMap((post) => post.categories);
       const uniqueCategories = [...new Set(allCategories)];
       setCategories(uniqueCategories);
-      console.log(allCategories);
       // (2)
       setLoader(false);
     } catch (err) {
@@ -72,23 +71,46 @@ const Home = () => {
     // md for medium screen
     <>
       <Navbar />
-      <div className="px-8 md:px-[300px] min-h-[80vh]">
-        {loader ? ( // (2)
-          <div className="h-[40vh] flex justify-center items-center">
-            <Loader />
+      <table className=" items-center justify-center md:max m-a">
+        {/* Categories */}
+        <tr>
+          <div className=" px-8 md:px-[200px] max-h-24 overflow-y-auto justify-center w-5/6">
+            <div className="bg-white flex flex-row gap-2 justify-center">
+              {categories.map((category, index) => (
+                <p
+                  onClick={() => handleSearchByCategory(category)}
+                  key={index}
+                  className="border-2 border-gray-300 p-2 shadow-lg shadow-gray-500/50 rounded-lg cursor-pointer"
+                >
+                  {category}
+                </p>
+              ))}
+            </div>
           </div>
-        ) : !noResults ? ( // (1)
-          posts.map((post) => (
-            <>
-              <Link to={`/posts/post/${post._id}`}>
-                <HomePosts key={post._id} post={post} />
-              </Link>
-            </>
-          ))
-        ) : (
-          <h3 className="text-center font-bold mt-16"> NO POSTS AVAILABLE</h3>
-        )}
-      </div>
+        </tr>
+        <tr>
+          <div className=" px-8 md:px-[200px] min-h-[80vh]">
+            {loader ? ( // (2)
+              <div className="h-[40vh] flex justify-center items-center">
+                <Loader />
+              </div>
+            ) : !noResults ? ( // (1)
+              posts.map((post) => (
+                <>
+                  <Link to={`/posts/post/${post._id}`}>
+                    <HomePosts key={post._id} post={post} />
+                  </Link>
+                </>
+              ))
+            ) : (
+              <h3 className="text-center font-bold mt-16">
+                {" "}
+                NO POSTS AVAILABLE
+              </h3>
+            )}
+          </div>
+        </tr>
+      </table>
       <Footer />
     </>
   );
