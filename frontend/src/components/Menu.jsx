@@ -2,19 +2,22 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import { URL } from "../url";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const { user } = useContext(UserContext);
   const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
+      // eslint-disable-next-line no-unused-vars
       const res = await axios.get(URL + "/api/auth/logout", {
         withCredentials: true,
       });
-      console.log(res);
+      // console.log(res);
       setUser(null);
+      navigate("/login");
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +37,7 @@ const Menu = () => {
       )}
       {user && (
         <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
-          Profile
+          <Link to={"/profile/" + user._id}>Profile</Link>
         </h3>
       )}
       {user && (
@@ -44,7 +47,7 @@ const Menu = () => {
       )}
       {user && (
         <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
-          My Blog
+          <Link to={"/myblogs/" + user._id}>My blogs</Link>
         </h3>
       )}
       {user && (
