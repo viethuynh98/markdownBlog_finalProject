@@ -18,9 +18,10 @@ const Profile = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [updated, setUpdated] = useState(false);
+  const [profile, setProfile] = useState("");
   // console.log(user)
 
-  const fetchProfile = async () => {
+  const fetchUserCredentials = async () => {
     try {
       const res = await axios.get(URL + "/api/users/" + user._id, {
         withCredentials: true,
@@ -72,12 +73,26 @@ const Profile = () => {
     }
   };
 
+  const fetchUserProfile = async () => {
+    try {
+      const res = await axios.get(URL + "/api/userProfile/" + user._id);
+      // console.log(res.data[0])
+      setProfile(res.data[0]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    fetchProfile();
+    fetchUserCredentials();
   }, [param]);
 
   useEffect(() => {
     fetchUserPosts();
+  }, [param]);
+
+  useEffect(() => {
+    fetchUserProfile();
   }, [param]);
 
   return (
