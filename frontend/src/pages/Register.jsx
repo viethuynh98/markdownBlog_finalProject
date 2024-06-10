@@ -13,10 +13,12 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
+      const firstTime = true;
       const res = await axios.post(URL + "/api/auth/register", {
         username,
         email,
         password,
+        firstTime,
       });
       setUsername(res.data.username);
       setEmail(res.data.email);
@@ -44,7 +46,10 @@ const Register = () => {
       >
         <div className="absolute inset-0 bg-black bg-opacity-30 "></div>
         <div className="flex items-center justify-center px-6 md:px-[200px]">
-          <h1 className="text-lg md:text-xl font-extrabold items-center z-10 hover:text-white mt-7" style={{fontSize: 40}}>
+          <h1
+            className="text-lg md:text-xl font-extrabold items-center z-10 hover:text-white mt-7"
+            style={{ fontSize: 40 }}
+          >
             {/* link to the homepage */}
             <Link to="/">VTB BLOG</Link>
           </h1>
@@ -53,7 +58,7 @@ const Register = () => {
           <div
             className="flex flex-col justify-center items-center space-y-4 w-[80%] md:w-[25%] p-8 border-2 border-gray-300 rounded-lg shadow-lg relative"
             style={{
-              background: "rgba(255, 255, 255, 0.8)", 
+              background: "rgba(255, 255, 255, 0.8)",
             }}
           >
             <h1 className="text-xl font-bold text-left">Create an account</h1>

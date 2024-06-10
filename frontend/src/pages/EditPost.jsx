@@ -90,22 +90,21 @@ const EditPost = () => {
   return (
     <div
       style={{
-        backgroundImage: `url('https://www.desktopbackground.org/download/1920x1080/2010/12/30/134293_imagination-high-fantasy-photo-1920x1200-hd-wallpapers-and-free_1920x1200_h.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
+        background: "rgba(0, 0, 0, 0.2)",
       }}
     >
       <div
         style={{
-          background: "rgba(255, 255, 255, 1)",
+          background: "rgba(0, 0, 0, 0.2)",
         }}
       >
         <Navbar />
       </div>
 
       <div className="px-6 md:px-[200px] mt-8">
-        <h1 className="font-bold md:text-2xl text-xl mb-4 text-center">Update a post</h1>
+        <h1 className="font-bold md:text-2xl text-xl mb-4 text-center">
+          Update a post
+        </h1>
         <form
           className="w-full flex flex-col space-y-4 md:space-y-8 mt-4 border border-gray-300 rounded-lg shadow-lg p-6"
           style={{

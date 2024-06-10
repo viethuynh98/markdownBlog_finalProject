@@ -94,7 +94,7 @@ const PostDetails = () => {
           <Loader />
         </div>
       ) : (
-        <div className="px-8 md:px-[300px] mt-8">
+        <div className="px-8 md:px-[300px] mt-8" >
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-black md:text-3xl">
               {post.title}
@@ -125,20 +125,18 @@ const PostDetails = () => {
           <div className="flex items-center mt-8 space-x-4 font-semibold">
             <p>Categories:</p>
             <div className="flex justify-center items-center space-x-2">
-              {post.categories?.map((c, i) => (
-                <>
-                  <div key={i} className="bg-gray-300 rounded-lg px-3 py-1">
-                    {c}
-                  </div>
-                </>
+              {post.categories?.map((c, index) => (
+                <div key={index} className="bg-gray-300 rounded-lg px-3 py-1">
+                  {c}
+                </div>
               ))}
             </div>
           </div>
           {/* comment section */}
           <div className="flex flex-col mt-4">
             <h3 className="mt-6 mb-4 font-semibold">Comments:</h3>
-            {comments?.map((c) => (
-              <Comment key={c._id} c={c} post={post} />
+            {comments?.map((c, i) => (
+              <Comment key={i} c={c} post={post} />
             ))}
           </div>
           {/* write a comment */}

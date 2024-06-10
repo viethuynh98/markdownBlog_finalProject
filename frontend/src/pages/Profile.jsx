@@ -7,7 +7,8 @@ import ProfilePosts from "../components/ProfilePosts";
 import axios from "axios";
 import { IF, URL } from "../url";
 import { UserContext } from "../context/UserContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import HomePosts from "../components/HomePosts";
 
 const getRandomBrightColor = () => {
   const letters = "89ABCDEF";
@@ -107,12 +108,33 @@ const Profile = () => {
         <div className="flex w-full">
           {/* Summary */}
           <div className="w-3/4 p-4 min-h-[300px]">
-            <h1 className="ext-xl font-bold mb-4 text-center">ABOUT</h1>
+            <h1 className="ext-xl font-bold mb-4 text-center">ABOUT ME</h1>
             <p>{profile?.summary}</p>
           </div>
-          {/* Profile Photo */}
-          <div className="w-1/4">
-            <img src={IF + "image1"} alt="Profile" className="w-full h-auto" />
+          <div className="w-1/4 flex flex-col items-center">
+            {/* Profile Photo */}
+            <div className="w-full">
+              <img
+                src={IF + profile?.photo}
+                alt="Profile"
+                className="w-full h-auto"
+              />
+            </div>
+            {/* Buttons */}
+            <div className="mt-4">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 mr-4 rounded-lg"
+                onClick={handleUserUpdate}
+              >
+                Update
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-lg"
+                onClick={handleUserDelete}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
         {/* Skills */}
@@ -181,7 +203,11 @@ const Profile = () => {
                 backgroundColor: getRandomBrightColor(),
               }}
             >
-              <ProfilePosts p={p} />
+              <>
+                <Link to={user ? `/posts/post/${p._id}` : "/login"}>
+                  <HomePosts key={p._id} post={p} />
+                </Link>
+              </>
             </div>
           ))}
         </div>
