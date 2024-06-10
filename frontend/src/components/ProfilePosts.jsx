@@ -3,7 +3,7 @@ import { IF } from "../url";
 
 const ProfilePosts = ({ p }) => {
   return (
-    <div className="w-full flex mt-8 space-x-4">
+    <div className="w-full flex mt-8 space-x-4 border-2 border-gray-300 p-4 shadow-lg shadow-gray-500/50 rounded-lg">
       {/* left */}
       {/* h-full w-full: height full width full */}
       <div className="w-[35%] h-[200px] flex justify-center items-center">

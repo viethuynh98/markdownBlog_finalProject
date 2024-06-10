@@ -19,7 +19,6 @@ const PostDetails = () => {
   const [comment, setComment] = useState("");
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
-
   const fetchPost = async () => {
     try {
       const res = await axios.get(URL + "/api/posts/" + postId);
