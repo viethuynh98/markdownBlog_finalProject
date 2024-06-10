@@ -7,6 +7,7 @@ import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
 import Profile from "./pages/Profile";
 import { UserContextProvider } from "./context/UserContext";
+import MyBlogs from "./components/MyBlogs";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/write" element={<CreatePost />} />
         <Route path="/posts/post/:id" element={<PostDetails />} />
         <Route path="/edit/:id" element={<EditPost />} />
+        <Route path="/myBlogs/:id" element={<MyBlogs />} />
         <Route path="/profile/:id" element={<Profile />} />
       </Routes>
     </UserContextProvider>
