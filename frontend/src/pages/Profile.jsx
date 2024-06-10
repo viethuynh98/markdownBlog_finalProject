@@ -9,6 +9,15 @@ import { URL } from "../url";
 import { UserContext } from "../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 
+const getRandomBrightColor = () => {
+  const letters = "89ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 8)];
+  }
+  return color;
+};
+
 const Profile = () => {
   const param = useParams().id;
   const [username, setUsername] = useState("");
