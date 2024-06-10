@@ -58,7 +58,7 @@ const Navbar = () => {
       <div className="hidden md:flex items-center justify-center space-x-2 md:space-x-4">
         {user ? (
           <h3>
-            <Link to="/write">Write</Link>
+            <Link to="/write"></Link>
           </h3>
         ) : (
           <h3>

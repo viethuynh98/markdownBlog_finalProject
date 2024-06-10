@@ -42,9 +42,9 @@ const Register = () => {
           position: "relative",
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="flex items-center justify-center px-6 md:px-[200px] py-4">
-          <h1 className="text-lg md:text-xl font-extrabold items-center">
+        <div className="absolute inset-0 bg-black bg-opacity-30 "></div>
+        <div className="flex items-center justify-center px-6 md:px-[200px]">
+          <h1 className="text-lg md:text-xl font-extrabold items-center z-10 hover:text-white mt-7" style={{fontSize: 40}}>
             {/* link to the homepage */}
             <Link to="/">VTB BLOG</Link>
           </h1>
