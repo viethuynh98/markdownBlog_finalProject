@@ -21,7 +21,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="py-2 pb-4 text-center text-white bg-black text-sm">
-        All right reserved @Blog Market 2024
+        All right reserved @VTB BLOG 2024
       </p>
     </>
   );

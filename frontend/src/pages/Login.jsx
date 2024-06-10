@@ -33,17 +33,14 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between px-6 md:px-[200px] py-4">
-        <h1 className="text-lg md:text-xl font-extrabold">
+      <div className="flex items-center justify-center px-6 md:px-[200px] py-4">
+        <h1 className="text-lg md:text-xl font-extrabold items-center">
           {/* link to the homepage */}
-          <Link to="/">Blog Market</Link>
+          <Link to="/">VTB BLOG</Link>
         </h1>
-        <h3>
-          <Link to="/register">Register</Link>
-        </h3>
       </div>
       <div className="w-full flex justify-center items-center h-[80vh]">
-        <div className="flex flex-col justify-center items-center space-y-4 w-[80%] md:w-[25%]">
+        <div className="flex flex-col justify-center items-center space-y-4 w-[80%] md:w-[25%] p-8 border-2 border-gray-300 rounded-lg shadow-lg">
           <h1 className="text-xl font-bold text-left">
             Log in to your account
           </h1>
@@ -58,7 +55,7 @@ const Login = () => {
           <input
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-2 border-2 border-black outline-0"
-            type="text"
+            type="password"
             placeholder="Enter your password"
             name=""
             id=""
@@ -80,6 +77,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
