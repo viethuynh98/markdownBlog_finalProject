@@ -20,10 +20,11 @@ const Profile = () => {
   const [updated, setUpdated] = useState(false);
   const [profile, setProfile] = useState("");
   // console.log(user)
+  // console.log(param)
 
   const fetchUserCredentials = async () => {
     try {
-      const res = await axios.get(URL + "/api/users/" + user._id, {
+      const res = await axios.get(URL + "/api/users/" + param, {
         withCredentials: true,
       });
       setUsername(res.data.username);
@@ -65,7 +66,7 @@ const Profile = () => {
   // console.log(user)
   const fetchUserPosts = async () => {
     try {
-      const res = await axios.get(URL + "/api/posts/user/" + user._id);
+      const res = await axios.get(URL + "/api/posts/user/" + param);
       // console.log(res.data)
       setPosts(res.data);
     } catch (err) {
@@ -75,8 +76,8 @@ const Profile = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const res = await axios.get(URL + "/api/userProfile/" + user._id);
-      // console.log(res.data[0])
+      const res = await axios.get(URL + "/api/userProfile/" + param);
+      console.log(res.data[0])
       setProfile(res.data[0]);
     } catch (err) {
       console.log(err);
