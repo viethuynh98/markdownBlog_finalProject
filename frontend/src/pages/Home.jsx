@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import Footer from "../components/Footer";
 import HomePosts from "../components/HomePosts";
@@ -119,8 +120,8 @@ const Home = () => {
                 <Loader />
               </div>
             ) : !noResults ? (
-              posts.map((post) => (
-                <Link to={`/posts/post/${post._id}`} key={post._id}>
+              posts.map((post, index) => (
+                <Link to={`/posts/post/${post._id}`} key={index}>
                   <HomePosts post={post} />
                 </Link>
               ))
