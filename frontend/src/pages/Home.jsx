@@ -53,7 +53,7 @@ const Home = () => {
     // md for medium screen
     <>
       <Navbar />
-      <div className="px-8 md:px-[200px] min-h-[80vh]">
+      <div className="px-8 md:px-[300px] min-h-[80vh]">
         {loader ? ( // (2)
           <div className="h-[40vh] flex justify-center items-center">
             <Loader />

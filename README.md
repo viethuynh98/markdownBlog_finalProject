@@ -7,6 +7,10 @@
 - config screen width: use min-width (tailwind.config.js)
 - add extension thunder client to using POSTMAN inside vscode
 - axios???
+- using {withCredentials: true} to handle 401: Unauthorized (in RESTful)
+- 404: The server cannot find the requested resource. In the browser, this means the URL is not recognized => "check you URL"
+- 500: Server Error -> check route logic
+- NOTE: need to log in to see the post
 
 # frontend
 
@@ -143,3 +147,24 @@
   - send searched result to server
   - add additional condition to check result
   - add loader animation
+
+## get post detail from db
+
+- fetch data from db
+- embedded link to post in homepage
+- add loader animation
+- remove search bar in post detail page
+
+## upload img
+
+- init storage
+- init upload image route
+- use postman for testing
+- update create post page to dave post and image
+- import: {npm i path} to add control image path
+
+## edit post
+
+- duplicate from create post
+- change RESTful method from "post" to "put"
+- add onClick function for edit button on PostDetail page

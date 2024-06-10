@@ -93,7 +93,7 @@ const PostDetails = () => {
           <Loader />
         </div>
       ) : (
-        <div className="px-8 md:px-[200px] mt-8">
+        <div className="px-8 md:px-[300px] mt-8">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-black md:text-3xl">
               {post.title}
@@ -119,7 +119,7 @@ const PostDetails = () => {
               <p>{new Date(post.updatedAt).toString().slice(16, 24)}</p>
             </div>
           </div>
-          <img src={IF + post.photo} className="w-full  mx-auto mt-8" alt="" />
+          <img src={IF + post.photo} className="w-2/4 mx-auto mt-8" alt="" />
           <p className="mx-auto mt-8">{post.desc}</p>
           <div className="flex items-center mt-8 space-x-4 font-semibold">
             <p>Categories:</p>
