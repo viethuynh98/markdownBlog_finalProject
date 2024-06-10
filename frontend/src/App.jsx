@@ -7,7 +7,7 @@ import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
 import Profile from "./pages/Profile";
 import { UserContextProvider } from "./context/UserContext";
-import MyBlogs from "./components/MyBlogs";
+import MyBlogs from "./pages/MyBlogs";
 
 const App = () => {
   return (

@@ -10,6 +10,7 @@
 - using {withCredentials: true} to handle 401: Unauthorized (in RESTful)
 - 404: The server cannot find the requested resource. In the browser, this means the URL is not recognized => "check you URL"
 - 500: Server Error -> check route logic
+- echo.> .gitignore
 - NOTE: need to log in to see the post
 
 # frontend
