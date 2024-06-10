@@ -1,4 +1,6 @@
-export default {
+/* eslint-disable no-undef */
+// tailwind.config.js
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -15,5 +17,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated'), // Thêm plugin này
+  ],
 }
