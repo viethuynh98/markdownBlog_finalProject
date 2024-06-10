@@ -56,11 +56,25 @@ router.get("/:id", async (req, res) => {
 // GET POSTS
 router.get("/", async (req, res) => {
   const query = req.query;
+  console.log(query);
   try {
     const searchFilter = {
       title: { $regex: query.search, $options: "i" },
     };
     const posts = await Post.find(query.search ? searchFilter : null);
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// GET POSTS BY CATEGORY
+router.get("/search/:category", async (req, res) => {
+  const category = req.params.category;
+  // console.log(category);
+  try {
+    const searchFilter = { categories: category };
+    const posts = await Post.find(searchFilter);
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);
