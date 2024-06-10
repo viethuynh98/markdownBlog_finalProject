@@ -69,7 +69,15 @@ const Home = () => {
     <>
       <Navbar />
       <div className="flex flex-col md:flex-row">
-        <div className="container md:sticky md:top-12 mx-auto md:w-1/5 border-2 border-gray-300 p-4 shadow-lg shadow-gray-500/50 rounded-lg md:flex-col md:mr-4">
+        <div
+          className="container md:sticky md:top-12 mx-auto md:w-1/5 border-2 border-gray-300 p-4 shadow-lg shadow-gray-500/50 rounded-lg md:flex-col md:mr-4"
+          style={{
+            backgroundImage: `url('https://wallpapers.com/images/hd/white-hd-1920-x-1080-background-qtcofj6p2lhwo3sb.jpg')`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            minHeight: "100vh",
+          }}
+        >
           <div className="md:sticky md:top-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold">CATEGORIES</h3>
@@ -93,8 +101,16 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1">
-          <div className="px-8 md:px-[100px] min-h-[80vh] border-2 border-gray-300 p-4 shadow-lg shadow-gray-500/50 rounded-lg">
+        <div
+          className="flex-1"
+          style={{
+            backgroundImage: `url('https://wallpapers.com/images/hd/white-hd-1920-x-1080-background-qtcofj6p2lhwo3sb.jpg')`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <div className="px-8 mt-4 md:mt-0 md:px-[100px] min-h-[80vh] border-2 border-gray-300 p-4 shadow-lg shadow-gray-500/50 rounded-lg">
             <h3 className="text-center font-bold py-2">ARTICLES</h3>
             {loader ? (
               <div className="h-[40vh] flex justify-center items-center">

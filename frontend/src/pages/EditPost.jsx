@@ -88,22 +88,41 @@ const EditPost = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    <div
+      style={{
+        backgroundImage: `url('https://www.desktopbackground.org/download/1920x1080/2010/12/30/134293_imagination-high-fantasy-photo-1920x1200-hd-wallpapers-and-free_1920x1200_h.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <div
+        style={{
+          background: "rgba(255, 255, 255, 1)",
+        }}
+      >
+        <Navbar />
+      </div>
+
       <div className="px-6 md:px-[200px] mt-8">
-        <h1 className="font-bold md:text-2xl text-xl">Update a post</h1>
-        <form className="w-full flex flex-col space-y-4 md:space-y-8 mt-4">
+        <h1 className="font-bold md:text-2xl text-xl mb-4 text-center">Update a post</h1>
+        <form
+          className="w-full flex flex-col space-y-4 md:space-y-8 mt-4 border border-gray-300 rounded-lg shadow-lg p-6"
+          style={{
+            background: "rgba(0, 0, 0, 0.7)",
+          }}
+        >
           <input
             onChange={(e) => setTitle(e.target.value)}
             value={title}
             type="text"
             placeholder="Enter post title"
-            className="px-4 py-2 outline-1"
+            className="px-4 py-2 outline-none border border-gray-300 rounded-md focus:border-black"
           />
           <input
             onChange={(e) => setFile(e.target.files[0])}
             type="file"
-            className="px-4"
+            className="px-4 py-2 outline-none border rounded-md border-white text-white"
           />
 
           {/* category */}
@@ -115,7 +134,7 @@ const EditPost = () => {
                 onChange={(e) => setCat(e.target.value)}
                 type="text"
                 placeholder="Enter post category"
-                className="px-4 py-2 outline-1"
+                className="px-4 py-2 outline-none border border-gray-300 rounded-md focus:border-black"
               />
               <div
                 onClick={addCategory}
@@ -155,11 +174,11 @@ const EditPost = () => {
             rows={15}
             cols={30}
             placeholder="Enter post description"
-            className="px-4 py-2 outline-none"
+            className="px-4 py-2 outline-none border border-gray-300 rounded-md focus:border-black"
           />
           <button
             onClick={handleUpdate}
-            className="bg-black w-4/12 md:w-1/5 mx-auto text-white font-semibold px-4 py-2 md:text-xl text-lg"
+            className="bg-gray-700 w-full md:w-1/2 mx-auto text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800"
           >
             Update
           </button>
