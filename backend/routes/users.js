@@ -5,13 +5,14 @@ const bcrypt = require("bcrypt");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const verifyToken = require("../verifyToken");
+const UserProfile = require("../models/UserProfile");
 // const verifyToken = require("../verifyToken");
 
 //UPDATE
 router.put("/:id", verifyToken, async (req, res) => {
   try {
     if (req.body.password) {
-      // encode password 
+      // encode password
       const salt = await bcrypt.genSalt(10);
       req.body.password = await bcrypt.hashSync(req.body.password, salt);
     }
@@ -33,11 +34,16 @@ router.delete("/:id", verifyToken, async (req, res) => {
   try {
     // delete user
     await User.findByIdAndDelete(req.params.id);
+    // delete profile
+    await UserProfile.findByIdAndDelete({ userId: req.params.id });
     // delete all user's post
     await Post.deleteMany({ userId: req.params.id });
     // delete all user's comment
     await Comment.deleteMany({ userId: req.params.id });
-    res.clearCookie("token", { sameSite: "none", secure: true }).status(200).json("User has been deleted!");
+    res
+      .clearCookie("token", { sameSite: "none", secure: true })
+      .status(200)
+      .json("User has been deleted!");
   } catch (err) {
     res.status(500).json(err);
   }
