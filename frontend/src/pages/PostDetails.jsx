@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Comment from "../components/Comment";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -94,7 +94,7 @@ const PostDetails = () => {
           <Loader />
         </div>
       ) : (
-        <div className="px-8 md:px-[300px] mt-8" >
+        <div className="px-8 md:px-[300px] mt-8">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-black md:text-3xl">
               {post.title}
@@ -114,7 +114,9 @@ const PostDetails = () => {
             )}
           </div>
           <div className="flex items-center justify-between mt-2 md:mt-4">
-            <p>@{post.username}</p>
+            <Link to={"/profile/" + post.userId}>
+              <p>@{post.username}</p>
+            </Link>
             <div className="flex space-x-2">
               <p>{new Date(post.updatedAt).toString().slice(0, 15)}</p>
               <p>{new Date(post.updatedAt).toString().slice(16, 24)}</p>

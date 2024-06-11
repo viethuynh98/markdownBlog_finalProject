@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import { ImCross } from "react-icons/im";
 import axios from "axios";
 import { URL } from "../url";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const UpdateProfile = () => {
@@ -28,6 +28,11 @@ const UpdateProfile = () => {
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
   // console.log(param);
+  // console.log(user)
+  if (user && param !== user._id) {
+    navigate("/");
+  }
+
   const fetchUserProfile = async () => {
     try {
       const res = await axios.get(URL + "/api/userProfile/" + param);

@@ -125,20 +125,22 @@ const Profile = () => {
               />
             </div>
             {/* Buttons */}
-            <div className="mt-4">
-              <button
-                className="bg-blue-500 text-white px-4 py-2 mr-4 rounded-lg"
-                onClick={() => navigate("/UpdateProfile/" + param)}
-              >
-                Update
-              </button>
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded-lg"
-                onClick={handleUserDelete}
-              >
-                Delete
-              </button>
-            </div>
+            {user && user._id && param === user._id && (
+              <div className="mt-4">
+                <button
+                  className="bg-blue-500 text-white px-4 py-2 mr-4 rounded-lg"
+                  onClick={() => navigate("/UpdateProfile/" + param)}
+                >
+                  Update
+                </button>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg"
+                  onClick={handleUserDelete}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
         {/* Skills */}
