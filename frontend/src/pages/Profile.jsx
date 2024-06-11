@@ -115,7 +115,11 @@ const Profile = () => {
             {/* Profile Photo */}
             <div className="w-full">
               <img
-                src={IF + profile?.photo}
+                src={
+                  profile?.photo
+                    ? IF + profile?.photo
+                    : "https://static.vecteezy.com/system/resources/thumbnails/003/337/584/small/default-avatar-photo-placeholder-profile-icon-vector.jpg"
+                }
                 alt="Profile"
                 className="w-full h-auto"
               />
@@ -124,7 +128,7 @@ const Profile = () => {
             <div className="mt-4">
               <button
                 className="bg-blue-500 text-white px-4 py-2 mr-4 rounded-lg"
-                onClick={handleUserUpdate}
+                onClick={() => navigate("/UpdateProfile/" + param)}
               >
                 Update
               </button>
@@ -193,7 +197,7 @@ const Profile = () => {
           </div>
         </div>
         {/* Posts */}
-        <div className="w-full p-4">
+        <div className="w-full p-4 min-h-[300px]">
           <h1 className="text-xl font-bold mb-4 text-center">POSTS</h1>
           {posts?.map((p) => (
             <div

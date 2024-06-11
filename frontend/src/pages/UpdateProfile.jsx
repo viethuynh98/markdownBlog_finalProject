@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { ImCross } from "react-icons/im";
@@ -8,29 +9,50 @@ import { URL } from "../url";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
-const AddProfile = () => {
+const UpdateProfile = () => {
   const param = useParams().id;
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [summary, setSummary] = useState("");
   const [skills, setSkills] = useState([]);
-  const [file, setFile] = useState(null);
   const [educations, setEducations] = useState([]);
   const [interests, setInterests] = useState([]);
+  const [updated, setUpdated] = useState(false);
   const [newSkill, setNewSkill] = useState("");
   const [newEducation, setNewEducation] = useState("");
   const [newInterest, setNewInterest] = useState("");
+  const [file, setFile] = useState(null);
   const [photo, setPhoto] = useState("");
+  const [id, setId] = useState("");
+  // console.log(param);
+  const fetchUserProfile = async () => {
+    try {
+      const res = await axios.get(URL + "/api/userProfile/" + param);
+      const userProfile = res.data[0];
+      setSummary(userProfile.summary);
+      setSkills(userProfile.skills);
+      setEducations(userProfile.educations);
+      setInterests(userProfile.interests);
+      setId(userProfile._id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  // console.log(param); // userId
-  const createUserProfile = async () => {
+  useEffect(() => {
+    fetchUserProfile();
+  }, [param]);
+
+  const handleUserUpdate = async () => {
     if (file) {
       const data = new FormData();
       const filename = Date.now() + file.name;
       data.append("img", filename);
       data.append("file", file);
       setPhoto(filename);
-
       try {
         const imgUpload = await axios.post(URL + "/api/upload", data);
       } catch (err) {
@@ -40,8 +62,8 @@ const AddProfile = () => {
 
     try {
       const userId = param;
-      const res = await axios.post(
-        URL + "/api/userProfile/create",
+      const res = await axios.put(
+        URL + "/api/userProfile/" + id,
         {
           userId,
           summary,
@@ -52,13 +74,7 @@ const AddProfile = () => {
         },
         { withCredentials: true }
       );
-      const firstTime = false;
-      const res1 = await axios.put(
-        URL + "/api/users/" + param,
-        { firstTime },
-        { withCredentials: true }
-      );
-      // console.log(res.data);
+      console.log(res.data);
       // console.log(res1.data);
       navigate("/");
     } catch (err) {
@@ -106,19 +122,20 @@ const AddProfile = () => {
     <div>
       <Navbar />
       <div className="md:px-[200px] mt-8">
-        <div className="mx-auto">
-          <h1 className="text-xl font-bold mb-4 text-center">CREATE PROFILE</h1>
-          <input
-            onChange={(e) => setFile(e.target.files[0])}
-            type="file"
-            className="px-4 py-2 outline-none border rounded-md border-white text-black"
-          />
+        <div className="w-full">
+          <h1 className="text-xl font-bold mb-4 text-center">Update Profile</h1>
+
           <textarea
             onChange={(e) => setSummary(e.target.value)}
             value={summary}
             className="outline-none px-4 py-2 text-gray-500 w-full border"
-            placeholder="Say something about yourself!!!"
+            placeholder="Summary about yourself"
             rows="4"
+          />
+          <input
+            onChange={(e) => setFile(e.target.files[0])}
+            type="file"
+            className="px-4 py-2 outline-none border rounded-md border-white text-black"
           />
           <div className="flex flex-col mt-4">
             <div className="flex items-center space-x-4">
@@ -131,7 +148,7 @@ const AddProfile = () => {
               />
               <div
                 onClick={addSkill}
-                className="bg-black text-white px-4 py-2 font-semibold cursor-pointer hover:text-black hover:bg-gray-400"
+                className="bg-black text-white px-4 py-2 font-semibold cursor-pointer  hover:text-black hover:bg-gray-400"
               >
                 Add
               </div>
@@ -162,7 +179,7 @@ const AddProfile = () => {
               />
               <div
                 onClick={addEducation}
-                className="bg-black text-white px-4 py-2 font-semibold cursor-pointer hover:text-black hover:bg-gray-400"
+                className="bg-black text-white px-4 py-2 font-semibold cursor-pointer  hover:text-black hover:bg-gray-400"
               >
                 Add
               </div>
@@ -193,7 +210,7 @@ const AddProfile = () => {
               />
               <div
                 onClick={addInterest}
-                className="bg-black text-white px-4 py-2 font-semibold cursor-pointer hover:text-black hover:bg-gray-400"
+                className="bg-black text-white px-4 py-2 font-semibold cursor-pointer  hover:text-black hover:bg-gray-400"
               >
                 Add
               </div>
@@ -213,12 +230,12 @@ const AddProfile = () => {
               ))}
             </div>
           </div>
-          <div className=" items-center space-x-4 mt-8">
+          <div className="flex items-center space-x-4 mt-8">
             <button
-              onClick={createUserProfile}
+              onClick={handleUserUpdate}
               className="text-white font-semibold bg-black px-4 py-2 hover:text-black hover:bg-gray-400"
             >
-              CREATE
+              Update
             </button>
             <button
               onClick={() => navigate(`/profile/${param}`)}
@@ -227,6 +244,11 @@ const AddProfile = () => {
               Cancel
             </button>
           </div>
+          {updated && (
+            <h3 className="text-green-500 text-sm text-center mt-4">
+              Profile updated successfully!
+            </h3>
+          )}
         </div>
       </div>
       <Footer />
@@ -234,4 +256,26 @@ const AddProfile = () => {
   );
 };
 
-export default AddProfile;
+export default UpdateProfile;
+
+// <input
+//             onChange={(e) => setUsername(e.target.value)}
+//             value={username}
+//             className="outline-none px-4 py-2 text-gray-500"
+//             placeholder="Your username"
+//             type="text"
+//           />
+//           <input
+//             onChange={(e) => setEmail(e.target.value)}
+//             value={email}
+//             className="outline-none px-4 py-2 text-gray-500"
+//             placeholder="Your email"
+//             type="email"
+//           />
+//           <input
+//             onChange={(e) => setPassword(e.target.value)}
+//             value={password}
+//             className="outline-none px-4 py-2 text-gray-500"
+//             placeholder="Your password"
+//             type="password"
+//           />
